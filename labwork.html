@@ -73,7 +73,8 @@
          methods:{
             addToCart: function () {
                 this.cart.push(this.product.id);
-                         
+                           //reduce the "Number of spaces"
+                this.product.availableInventory--;     
 
 
             },
