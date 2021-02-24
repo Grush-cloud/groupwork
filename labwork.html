@@ -28,7 +28,8 @@
                 <p>Number of spaces: {{product.availableInventory}}</p>
                 
 
-             
+                <button v-on:click='addToCart' v-if='canAddToCart'>Add to cart</button>
+                
             </div>
                 
                    
