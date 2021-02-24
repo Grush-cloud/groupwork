@@ -9,28 +9,26 @@
 
         <div id="app">
             <header>
-                <h1 ></h1>
+                <h1 v-text="sitename"></h1>
                 
             </header>
-            <h2 ></h2>
+            <h2 v-text="product.title"></h2>
             <main>
-                <div >
+                <div v-if='showProduct'>
                 <figure>
-                 
+                    <!--bind the 'src' attribute to the 'product.image' in 'data'-->
+                    <img v-bind:src="product.image">
                 </figure>
                
-                <p></p>
+                <p v-html="product.location"></p>
 
                 <!-- The double curly brackets is the shorter version of 'v-text'-->
                
-                <p>Price: </p>
-                <p>Number of spaces:</p>
-                <!--<button v-on:click="addToCart" v-show="canAddToCart">
-                    Add to cart
-                </button>-->
+                <p>Price: {{product.price}}{{product.priceno}}</p>
+                <p>Number of spaces: {{product.availableInventory}}</p>
+                
 
-              
-               
+             
             </div>
                 
                    
@@ -42,6 +40,65 @@
 
 
 
+        <script type="text/javascript">
+        var webstore = new Vue({
+            el: '#app', // <=== Don't forget this comma
+            data: {
+                 // the 'data' option
+            // the key 'sitename' matches the value of 'v-text' earlier
+            sitename: 'After School Club',
+            showProduct:true,
+            
+          
+            
+            product: {
+                id:1001,
+                title: "Physics",
+                location: "London",
+                price: "$",
+                priceno:200,
+                image:"physics.jpg",
+                availableInventory:5,
+                
+            },
+            cart: [],
+            showProduct:true,
+
+
+         },
+    
+
+
+         methods:{
+            addToCart: function () {
+                this.cart.push(this.product.id);
+                            
+
+
+            },
+
+            
+          
+
+         },
+         
+
+         computed:{
+        cartItemCount:function(){
+            return 0;
+
+        },
+
+        canAddToCart: function(){
+            return this.product.availableInventory > this.cartItemCount;
+        }
+
+
+         },
      
+         });
+
+     
+    </script>
 </body>
 </html>
